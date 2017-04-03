@@ -2,12 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SimpleTokenAuth.Domain.Entities;
-using SimpleTokenAuth.Library;
 
 namespace SimpleTokenAuth.Repository {
+
     /// <summary>
     /// Use data repository
     /// </summary>
@@ -19,20 +17,12 @@ namespace SimpleTokenAuth.Repository {
         private readonly IAccountList _accountList;
 
         /// <summary>
-        /// Biblioteca de processamento de token
-        /// </summary>
-        private readonly ITokenLibrary tokenLibrary;
-
-        /// <summary>
         /// constructor method
         /// </summary>
         /// <param name="accountList">user list data</param>
-        public AccountRepository(IAccountList accountList, ITokenLibrary tokenLibrary)
-        {
+        public AccountRepository(IAccountList accountList) {
             //Set account list
             _accountList = accountList;
-            //Define a bilbioteca de token
-            this.tokenLibrary = tokenLibrary;
         }
 
         /// <summary>
@@ -86,17 +76,11 @@ namespace SimpleTokenAuth.Repository {
         /// Get all user list
         /// </summary>
         /// <returns>user token data list</returns>
-        public IEnumerable<AuthAccount> GetAllAccountsWithValidToken() {
-            //Mensagem de erro
-            var error = "";
-
+        public IEnumerable<AuthAccount> GetAllAccountsWithValidToken(Func<TokenData, bool> validation) {
             //Find for user
-            var accounts = _accountList.AuthAccounts.Where(w => tokenLibrary.Validation(w.Value.TokenData, out error) == true).Select(s => s.Value);
+            var accounts = _accountList.AuthAccounts.Where(w => validation(w.Value.TokenData)).Select(s => s.Value);
 
-            //Verifica se é necessário lança a exceção
-            if(string.IsNullOrEmpty(error)) throw new Exception(error);
-
-            //retorno
+            //Retorno
             return accounts;
         }
     }
