@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTokenAuth", "SimpleTokenAuth.csproj", "{183848C0-ECED-4C3F-9739-1848F8C5185D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTokenAuth.Tests", "..\SimpleTokenAuth.Tests\SimpleTokenAuth.Tests.csproj", "{3796E242-7477-4207-9D13-AC354BB8220B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{183848C0-ECED-4C3F-9739-1848F8C5185D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{183848C0-ECED-4C3F-9739-1848F8C5185D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{183848C0-ECED-4C3F-9739-1848F8C5185D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3796E242-7477-4207-9D13-AC354BB8220B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3796E242-7477-4207-9D13-AC354BB8220B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3796E242-7477-4207-9D13-AC354BB8220B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3796E242-7477-4207-9D13-AC354BB8220B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
