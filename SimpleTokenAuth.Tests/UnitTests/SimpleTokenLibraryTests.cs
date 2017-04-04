@@ -3,7 +3,7 @@ using SimpleTokenAuth.Domain.Entities;
 using SimpleTokenAuth.Library;
 using Xunit;
 
-namespace SimpleTokenAuth.Tests
+namespace SimpleTokenAuth.Tests.UnitTests
 {
     /// <summary>
     ///     SimpleTokenLibrary testes
