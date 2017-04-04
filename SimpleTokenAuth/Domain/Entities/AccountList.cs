@@ -1,10 +1,6 @@
-﻿using System;
+﻿using SimpleTokenAuth.Domain.Contracts;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SimpleTokenAuth.Domain.Contracts;
 
 namespace SimpleTokenAuth.Domain.Entities {
 

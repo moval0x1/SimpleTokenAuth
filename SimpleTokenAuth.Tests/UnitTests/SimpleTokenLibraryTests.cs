@@ -1,21 +1,20 @@
-﻿using System;
-using SimpleTokenAuth.Domain.Entities;
+﻿using SimpleTokenAuth.Domain.Entities;
 using SimpleTokenAuth.Library;
+using System;
 using Xunit;
 
-namespace SimpleTokenAuth.Tests.UnitTests
-{
+namespace SimpleTokenAuth.Tests.UnitTests {
+
     /// <summary>
     ///     SimpleTokenLibrary testes
     /// </summary>
-    public class SimpleTokenLibraryTests
-    {
+    public class SimpleTokenLibraryTests {
+
         /// <summary>
         ///     Test the new genereted Token
         /// </summary>
         [Fact]
-        public void NewTokenSucess()
-        {
+        public void NewTokenSucess() {
             //Define expiration in munutes
             const int expirationInMinutes = 30;
             //Get new simple token
@@ -43,8 +42,7 @@ namespace SimpleTokenAuth.Tests.UnitTests
         ///     Test the new genereted Token
         /// </summary>
         [Fact]
-        public void ValidateNewToken()
-        {
+        public void ValidateNewToken() {
             //Define expiration time in minutes
             const int expirationInMinutes = 30;
             //Build the token library
@@ -66,8 +64,7 @@ namespace SimpleTokenAuth.Tests.UnitTests
         ///     Verify if token is expired
         /// </summary>
         [Fact]
-        public void ValidateTokenExpired()
-        {
+        public void ValidateTokenExpired() {
             //Define token data
             var tokenData = new TokenData();
             //Define the expiratiob time in minutes
@@ -86,8 +83,7 @@ namespace SimpleTokenAuth.Tests.UnitTests
         ///     Try to valid null token data
         /// </summary>
         [Fact]
-        public void ValidateTokenIsNull()
-        {
+        public void ValidateTokenIsNull() {
             //Define token data as null
             TokenData tokenData = null;
             //Define the expiratiob time in minutes

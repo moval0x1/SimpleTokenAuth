@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
-using SimpleTokenAuth.Domain.Entities;
+﻿using SimpleTokenAuth.Domain.Entities;
 using SimpleTokenAuth.Library;
-using SimpleTokenAuth.Repository;
 using SimpleTokenAuth.Services;
+using System;
+using System.Linq;
 using Xunit;
 
 namespace SimpleTokenAuth.Tests.UnitTests {
@@ -47,7 +46,6 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             //Create token service
             var tokenService = new TokenService(simpleTokenLibrary, accountList);
 
-            
             //Get one account
             var account = tokenService.GetAccount(login);
 
@@ -158,7 +156,6 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             //Verifiy if are equal
             Assert.Equal(account.TokenData.Token, tokenData.Token);
         }
-
 
         /// <summary>
         /// Get all accounts with success

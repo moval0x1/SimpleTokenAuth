@@ -1,11 +1,12 @@
-﻿using System;
-using System.Linq;
-using SimpleTokenAuth.Domain.Entities;
+﻿using SimpleTokenAuth.Domain.Entities;
 using SimpleTokenAuth.Library;
 using SimpleTokenAuth.Repository;
+using System;
+using System.Linq;
 using Xunit;
 
 namespace SimpleTokenAuth.Tests.UnitTests {
+
     /// <summary>
     /// Summary description for AccountRepositoryTests
     /// </summary>
@@ -87,7 +88,7 @@ namespace SimpleTokenAuth.Tests.UnitTests {
 
             //Account repository
             var accountRepository = new AccountRepository(accountList);
-            //Get invalid account 
+            //Get invalid account
             var account = accountRepository.GetAccount("fff");
 
             //verify if is null
@@ -217,7 +218,7 @@ namespace SimpleTokenAuth.Tests.UnitTests {
 
             //Verifiy if is null
             Assert.NotNull(result);
-                
+
             //convert type list to array
             var authAccounts = result as AuthAccount[] ?? result.ToArray();
 

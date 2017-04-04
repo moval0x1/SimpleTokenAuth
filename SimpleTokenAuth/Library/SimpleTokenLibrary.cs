@@ -1,13 +1,13 @@
-﻿using SimpleTokenAuth.Domain.Entities;
+﻿using SimpleTokenAuth.Domain.Contracts;
+using SimpleTokenAuth.Domain.Entities;
 using System;
-using SimpleTokenAuth.Domain.Contracts;
 
 namespace SimpleTokenAuth.Library {
-    
+
     /// <summary>
     /// Library for token generation
     /// </summary>
-    internal class SimpleTokenLibrary : ITokenLibrary{
+    internal class SimpleTokenLibrary : ITokenLibrary {
 
         /// <summary>
         /// Expiration time in minutes
@@ -46,7 +46,6 @@ namespace SimpleTokenAuth.Library {
         /// <param name="tokenData">token data</param>
         /// <returns>|flag for validation success</returns>
         public bool Validation(TokenData tokenData) {
-
             //Verify if token data is null
             if (tokenData == null) return false;
 
