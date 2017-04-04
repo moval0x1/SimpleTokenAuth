@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using SimpleTokenAuth.Domain.Entities;
+﻿using SimpleTokenAuth.Domain.Entities;
+using System.Collections.Generic;
 
 namespace SimpleTokenAuth.Domain.Contracts {
 

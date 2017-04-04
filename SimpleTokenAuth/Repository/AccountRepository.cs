@@ -1,8 +1,8 @@
 ﻿using SimpleTokenAuth.Domain.Contracts;
+using SimpleTokenAuth.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SimpleTokenAuth.Domain.Entities;
 
 namespace SimpleTokenAuth.Repository {
 

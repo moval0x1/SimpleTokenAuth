@@ -1,11 +1,8 @@
-﻿using System;
+﻿using SimpleTokenAuth.Domain.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SimpleTokenAuth.Domain.Entities;
 
 namespace SimpleTokenAuth.Domain.Contracts {
+
     /// <summary>
     /// Token service interface
     /// </summary>
