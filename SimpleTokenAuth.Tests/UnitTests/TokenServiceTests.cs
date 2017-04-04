@@ -3,19 +3,24 @@ using System.Linq;
 using SimpleTokenAuth.Domain.Entities;
 using SimpleTokenAuth.Library;
 using SimpleTokenAuth.Repository;
+using SimpleTokenAuth.Services;
 using Xunit;
 
 namespace SimpleTokenAuth.Tests.UnitTests {
+
     /// <summary>
-    /// Summary description for AccountRepositoryTests
+    /// Token service Tests
     /// </summary>
-    public class AccountRepositoryTests {
+    public class TokenServiceTests {
 
         /// <summary>
         /// Get all accounts with success
         /// </summary>
         [Fact]
         public void GetAccountSucess() {
+            //Carrega biblioteca de manipulação de token
+            var simpleTokenLibrary = new SimpleTokenLibrary(30);
+
             //Login data
             const string login = "abc";
             //Password data
@@ -39,10 +44,12 @@ namespace SimpleTokenAuth.Tests.UnitTests {
                 }
             };
 
-            //Account repository
-            var accountRepository = new AccountRepository(accountList);
+            //Create token service
+            var tokenService = new TokenService(simpleTokenLibrary, accountList);
+
+            
             //Get one account
-            var account = accountRepository.GetAccount(login);
+            var account = tokenService.GetAccount(login);
 
             //Verifiy if is null
             Assert.NotNull(account);
@@ -60,8 +67,14 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             Assert.Equal(account.TokenData.Token, tokenData.Token);
         }
 
+        /// <summary>
+        /// Get all accounts with success
+        /// </summary>
         [Fact]
         public void GetAccountFail() {
+            //Carrega biblioteca de manipulação de token
+            var simpleTokenLibrary = new SimpleTokenLibrary(30);
+
             //Login data
             const string login = "abc";
             //Password data
@@ -85,10 +98,11 @@ namespace SimpleTokenAuth.Tests.UnitTests {
                 }
             };
 
-            //Account repository
-            var accountRepository = new AccountRepository(accountList);
-            //Get invalid account 
-            var account = accountRepository.GetAccount("fff");
+            //Create token service
+            var tokenService = new TokenService(simpleTokenLibrary, accountList);
+
+            //Get one account
+            var account = tokenService.GetAccount("sss");
 
             //verify if is null
             Assert.Null(account);
@@ -99,6 +113,8 @@ namespace SimpleTokenAuth.Tests.UnitTests {
         /// </summary>
         [Fact]
         public void GetAccountWithLoginAndTokenSucess() {
+            //Carrega biblioteca de manipulação de token
+            var simpleTokenLibrary = new SimpleTokenLibrary(30);
             //Login data
             const string login = "abc";
             //Password data
@@ -122,10 +138,10 @@ namespace SimpleTokenAuth.Tests.UnitTests {
                 }
             };
 
-            //Account repository
-            var accountRepository = new AccountRepository(accountList);
+            //Create token service
+            var tokenService = new TokenService(simpleTokenLibrary, accountList);
             //Get one account
-            var account = accountRepository.GetAccount(login, tokenData.Token);
+            var account = tokenService.GetAccount(login, tokenData.Token);
 
             //Verifiy if is null
             Assert.NotNull(account);
@@ -143,11 +159,15 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             Assert.Equal(account.TokenData.Token, tokenData.Token);
         }
 
+
         /// <summary>
         /// Get all accounts with success
         /// </summary>
         [Fact]
         public void GetAccountWithPassowrdValidateSucess() {
+            //Carrega biblioteca de manipulação de token
+            var simpleTokenLibrary = new SimpleTokenLibrary(30);
+
             //Login data
             const string login = "abc";
             //Password data
@@ -171,10 +191,10 @@ namespace SimpleTokenAuth.Tests.UnitTests {
                 }
             };
 
-            //Account repository
-            var accountRepository = new AccountRepository(accountList);
+            //Create token service
+            var tokenService = new TokenService(simpleTokenLibrary, accountList);
             //Get one account
-            var result = accountRepository.PasswordValidate(login, password);
+            var result = tokenService.PasswordValidate(login, password);
 
             //Verifiy if is null
             Assert.NotNull(result);
@@ -187,6 +207,9 @@ namespace SimpleTokenAuth.Tests.UnitTests {
         /// </summary>
         [Fact]
         public void GetAccountAllAccountsSucess() {
+            //Carrega biblioteca de manipulação de token
+            var simpleTokenLibrary = new SimpleTokenLibrary(30);
+
             //Login data
             const string login = "abc";
             //Password data
@@ -210,14 +233,14 @@ namespace SimpleTokenAuth.Tests.UnitTests {
                 }
             };
 
-            //Account repository
-            var accountRepository = new AccountRepository(accountList);
+            //Create token service
+            var tokenService = new TokenService(simpleTokenLibrary, accountList);
             //Get one account
-            var result = accountRepository.GetAllAccounts();
+            var result = tokenService.GetAllAccounts();
 
             //Verifiy if is null
             Assert.NotNull(result);
-                
+
             //convert type list to array
             var authAccounts = result as AuthAccount[] ?? result.ToArray();
 
@@ -232,6 +255,9 @@ namespace SimpleTokenAuth.Tests.UnitTests {
         /// </summary>
         [Fact]
         public void GetAccountAllAccountsWithValidtokenSucess() {
+            //Carrega biblioteca de manipulação de token
+            var simpleTokenLibrary = new SimpleTokenLibrary(30);
+
             //Login data
             const string login = "abc";
             //Password data
@@ -255,13 +281,10 @@ namespace SimpleTokenAuth.Tests.UnitTests {
                 }
             };
 
-            //Carrega biblioteca de manipulação de token
-            var simpleTokenLibrary = new SimpleTokenLibrary(30);
-
-            //Account repository
-            var accountRepository = new AccountRepository(accountList);
+            //Create token service
+            var tokenService = new TokenService(simpleTokenLibrary, accountList);
             //Get one account
-            var result = accountRepository.GetAllAccountsWithValidToken(simpleTokenLibrary.Validation);
+            var result = tokenService.GetAllAccountsWithValidToken();
 
             //Verifiy if is null
             Assert.NotNull(result);
