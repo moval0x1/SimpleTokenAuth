@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Contracts\ITokenService.cs" />
+    <Compile Include="Domain\Entities\AccountList.cs" />
     <Compile Include="Domain\Entities\AuthAccount.cs" />
     <Compile Include="Domain\Contracts\IAccountList.cs" />
     <Compile Include="Domain\Entities\TokenData.cs" />

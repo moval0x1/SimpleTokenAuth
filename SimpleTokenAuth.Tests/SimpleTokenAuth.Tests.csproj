@@ -60,7 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SimpleTokenLibraryTests.cs" />
+    <Compile Include="UnitTests\AccountRepositoryTests.cs" />
+    <Compile Include="UnitTests\SimpleTokenLibraryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
