@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>simpletokenlibrary</id>
+    <version>1.0.1</version>
+    <title>Simple Token Library</title>
+    <authors>Alexandre Brandão Lustosa</authors>
+    <owners>Alexandre Brandão Lustosa</owners>
+    <licenseUrl>https://github.com/alexandrebl/SimpleTokenAuth</licenseUrl>
+    <projectUrl>https://github.com/alexandrebl/SimpleTokenAuth</projectUrl>
+    <iconUrl>https://github.com/alexandrebl/SimpleTokenAuth</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Simple token authentication library</description>
+    <releaseNotes>Simple token authentication library.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>Authorization Token library</tags>
+  </metadata>
+</package>
