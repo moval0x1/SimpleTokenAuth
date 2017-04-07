@@ -3,7 +3,9 @@ using SimpleTokenAuth.Library;
 using SimpleTokenAuth.Repository;
 using System;
 using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xunit;
+using Assert = Xunit.Assert;
 
 namespace SimpleTokenAuth.Tests.UnitTests {
 
