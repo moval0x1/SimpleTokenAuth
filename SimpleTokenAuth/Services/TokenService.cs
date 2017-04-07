@@ -20,6 +20,11 @@ namespace SimpleTokenAuth.Services {
         /// </summary>
         private readonly ITokenLibrary _tokenLibrary;
 
+        /// <summary>
+        /// Método construtor
+        /// </summary>
+        /// <param name="tokenLibrary">biblioteca de token</param>
+        /// <param name="accountList">lista de contas</param>
         public TokenService(ITokenLibrary tokenLibrary, IAccountList accountList) {
             //Define repository
             _accountRepository = new AccountRepository(accountList);

@@ -36,10 +36,10 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             var accountList = new AccountList() {
                 //Auth accoint list
                 AuthAccounts ={
-                    {"def", new AuthAccount() { Login = "def", Password = "456", TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {"fgh", new AuthAccount() { Login = "fgh", Password = "789", TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {login, new AuthAccount() { Login = login, Password = password, TokenData = tokenData}},
-                    {"ijl", new AuthAccount() { Login = "ijl", Password = "000", TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {login, new AuthAccount(login, password) { TokenData = tokenData}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                 }
             };
 
@@ -89,10 +89,10 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             var accountList = new AccountList() {
                 //Auth accoint list
                 AuthAccounts ={
-                    {"def", new AuthAccount() { Login = "def", Password = "456", TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {"fgh", new AuthAccount() { Login = "fgh", Password = "789", TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {login, new AuthAccount() { Login = login, Password = password, TokenData = tokenData}},
-                    {"ijl", new AuthAccount() { Login = "ijl", Password = "000", TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {login, new AuthAccount(login, password) { TokenData = tokenData}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                 }
             };
 
@@ -129,10 +129,10 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             var accountList = new AccountList() {
                 //Auth accoint list
                 AuthAccounts ={
-                    {"def", new AuthAccount() { Login = "def", Password = "456", TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {"fgh", new AuthAccount() { Login = "fgh", Password = "789", TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {login, new AuthAccount() { Login = login, Password = password, TokenData = tokenData}},
-                    {"ijl", new AuthAccount() { Login = "ijl", Password = "000", TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {login, new AuthAccount(login, password) { TokenData = tokenData}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                 }
             };
 
@@ -181,10 +181,10 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             var accountList = new AccountList() {
                 //Auth accoint list
                 AuthAccounts ={
-                    {"def", new AuthAccount() { Login = "def", Password = "456", TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {"fgh", new AuthAccount() { Login = "fgh", Password = "789", TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {login, new AuthAccount() { Login = login, Password = password, TokenData = tokenData}},
-                    {"ijl", new AuthAccount() { Login = "ijl", Password = "000", TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {login, new AuthAccount(login, password) { TokenData = tokenData}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                 }
             };
 
@@ -223,10 +223,10 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             var accountList = new AccountList() {
                 //Auth accoint list
                 AuthAccounts ={
-                    {"def", new AuthAccount() { Login = "def", Password = "456", TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {"fgh", new AuthAccount() { Login = "fgh", Password = "789", TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {login, new AuthAccount() { Login = login, Password = password, TokenData = tokenData}},
-                    {"ijl", new AuthAccount() { Login = "ijl", Password = "000", TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {login, new AuthAccount(login, password) { TokenData = tokenData}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                 }
             };
 
@@ -271,10 +271,10 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             var accountList = new AccountList() {
                 //Auth accoint list
                 AuthAccounts ={
-                    {"def", new AuthAccount() { Login = "def", Password = "456", TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {"fgh", new AuthAccount() { Login = "fgh", Password = "789", TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {login, new AuthAccount() { Login = login, Password = password, TokenData = tokenData}},
-                    {"ijl", new AuthAccount() { Login = "ijl", Password = "000", TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {login, new AuthAccount(login, password) { TokenData = tokenData}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                 }
             };
 

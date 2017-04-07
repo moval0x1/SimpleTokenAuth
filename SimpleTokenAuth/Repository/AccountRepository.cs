@@ -83,5 +83,62 @@ namespace SimpleTokenAuth.Repository {
             //Retorno
             return accounts;
         }
+
+        /// <summary>
+        /// Insere uma nova conta
+        /// </summary>
+        /// <param name="login">login</param>
+        /// <param name="password">password data</param>
+        /// <returns>success flag</returns>
+        public bool Insert(string login, string password) {
+            //Create new account
+            var authAccount = new AuthAccount(login, password);
+            //Get one account
+            var data = GetAccount(login);
+
+            //Verify if is null
+            if (data != null) return false;
+            //Adding the account
+            _accountList.AuthAccounts.Add(login, authAccount);
+
+            //Return
+            return true;
+        }
+
+        /// <summary>
+        /// Insere uma nova conta
+        /// </summary>
+        /// <param name="login">login</param>
+        /// <returns>success flag</returns>
+        public bool Delete(string login) {
+            //Get one account
+            var data = GetAccount(login);
+
+            //Verify if is null
+            return data == null && _accountList.AuthAccounts.Remove(login);
+        }
+
+        /// <summary>
+        /// Insere uma nova conta
+        /// </summary>
+        /// <param name="login">login</param>
+        /// <param name="lastPassword"></param>
+        /// <param name="newPassword"></param>
+        /// <returns>success flag</returns>
+        public bool UpdatePassword(string login, string lastPassword, string newPassword) {
+            //Get one account
+            var data = GetAccount(login);
+
+            //Verify if is null
+            if (data != null) return false;
+
+            //Create new account
+            var authAccount = new AuthAccount(login, newPassword);
+            //Adding the account
+            _accountList.AuthAccounts[login] = authAccount;
+
+            //Return
+            return true;
+        }
     }
 }
