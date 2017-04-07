@@ -81,5 +81,38 @@ namespace SimpleTokenAuth.Services {
             //Get all accounts
             return _accountRepository.GetAllAccountsWithValidToken(_tokenLibrary.Validation);
         }
+
+        /// <summary>
+        /// Insere uma nova conta
+        /// </summary>
+        /// <param name="login">login</param>
+        /// <param name="password">password data</param>
+        /// <returns>success flag</returns>
+        public bool Insert(string login, string password) {
+            //Insere um novo usuário
+            return _accountRepository.Insert(login, password);
+        }
+
+        /// <summary>
+        /// Insere uma nova conta
+        /// </summary>
+        /// <param name="login">login</param>
+        /// <returns>success flag</returns>
+        public bool Delete(string login) {
+            //Remove um login
+            return _accountRepository.Delete(login);
+        }
+
+        /// <summary>
+        /// Insere uma nova conta
+        /// </summary>
+        /// <param name="login">login</param>
+        /// <param name="oldPassword"></param>
+        /// <param name="newPassword"></param>
+        /// <returns>success flag</returns>
+        public bool UpdatePassword(string login, string oldPassword, string newPassword)
+        {
+            return _accountRepository.UpdatePassword(login, oldPassword, newPassword);
+        }
     }
 }
