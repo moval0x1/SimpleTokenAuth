@@ -111,6 +111,7 @@ namespace SimpleTokenAuth.Services {
         /// <param name="newPassword"></param>
         /// <returns>account</returns>
         public AuthAccount UpdatePassword(string login, string oldPassword, string newPassword) {
+            //Atualiza senha
             return _accountRepository.UpdatePassword(login, oldPassword, newPassword);
         }
     }

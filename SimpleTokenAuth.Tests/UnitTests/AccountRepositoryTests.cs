@@ -382,7 +382,7 @@ namespace SimpleTokenAuth.Tests.UnitTests {
         /// Insertion test
         /// </summary>
         [Fact]
-        public void UpdatePasswordAccount() {
+        public void UpdatePasswordAccountSuccess() {
             //Login data
             const string login = "abc";
             //Password data
@@ -413,6 +413,41 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             Assert.Equal(login, newAuthAccount.Login);
             //Verify if are equals
             Assert.Equal(newPassword, newAuthAccount.Password);
+        }
+
+        /// <summary>
+        /// Insertion test
+        /// </summary>
+        [Fact]
+        public void UpdatePasswordAccountFail() {
+            //Login data
+            const string login = "abc";
+            //Password data
+            const string oldPassword = "123";
+            //Password data
+            const string newPassword = "456";
+            //Password data
+            const string wrongOldPassword = "aaa";
+
+            //Account list
+            var accountList = new AccountList() {
+                //Auth accoint list
+                AuthAccounts ={
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {login, new AuthAccount(login, oldPassword) { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                }
+            };
+
+            //Account repository
+            var accountRepository = new AccountRepository(accountList);
+
+            //Atualiza a senha
+            var newAuthAccount = accountRepository.UpdatePassword(login, wrongOldPassword, newPassword);
+
+            //Verify is is null
+            Assert.Null(newAuthAccount);
         }
     }
 }

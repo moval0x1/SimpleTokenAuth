@@ -130,7 +130,7 @@ namespace SimpleTokenAuth.Repository {
             var data = GetAccount(login, oldPassword);
 
             //Verify if is null
-            if (data != null) return null;
+            if (data == null) return null;
 
             //Create new account
             var authAccount = new AuthAccount(login, newPassword);
