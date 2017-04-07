@@ -141,6 +141,9 @@ namespace SimpleTokenAuth.Repository {
             //Verify if is null
             if (account == null) return null;
 
+            //Verify if the password is valid
+            if(!PasswordValidate(login, oldPassword)) return null;
+
             //Verifica se a senha é igual
             if(string.Compare(account.Password, oldPassword, StringComparison.Ordinal) != 0) return null;
 
