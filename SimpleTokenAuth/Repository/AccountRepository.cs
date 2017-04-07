@@ -83,5 +83,74 @@ namespace SimpleTokenAuth.Repository {
             //Retorno
             return accounts;
         }
+
+        /// <summary>
+        /// Insere uma nova conta
+        /// </summary>
+        /// <param name="login">login</param>
+        /// <param name="password">password data</param>
+        /// <returns>success flag</returns>
+        public AuthAccount Insert(string login, string password) {
+            //Verify if is null
+            if ((string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))) return null;
+
+            //Create new account
+            var authAccount = new AuthAccount(login, password);
+            //Get one account
+            var data = GetAccount(login);
+
+            //Verify if is null
+            if (data != null) return null;
+            //Adding the account
+            _accountList.AuthAccounts.Add(login, authAccount);
+
+            //Return
+            return authAccount;
+        }
+
+        /// <summary>
+        /// Insere uma nova conta
+        /// </summary>
+        /// <param name="login">login</param>
+        /// <returns>success flag</returns>
+        public bool Delete(string login) {
+            //Verify if is null
+            if (string.IsNullOrEmpty(login)) return false;
+
+            //Get one account
+            var data = GetAccount(login);
+
+            //Verify if is null
+            return data != null && _accountList.AuthAccounts.Remove(login);
+        }
+
+        /// <summary>
+        /// Insere uma nova conta
+        /// </summary>
+        /// <param name="login">login</param>
+        /// <param name="oldPassword"></param>
+        /// <param name="newPassword"></param>
+        /// <returns>success flag</returns>
+        public AuthAccount UpdatePassword(string login, string oldPassword, string newPassword) {
+            //Verify if is null
+            if ((string.IsNullOrEmpty(login) || string.IsNullOrEmpty(oldPassword) || string.IsNullOrEmpty(newPassword))) return null;
+
+            //Get one account
+            var account = GetAccount(login);
+
+            //Verify if is null
+            if (account == null) return null;
+
+            //Verifica se a senha é igual
+            if(string.Compare(account.Password, oldPassword, StringComparison.Ordinal) != 0) return null;
+
+            //Create new account
+            var authAccount = new AuthAccount(login, newPassword);
+            //Adding the account
+            _accountList.AuthAccounts[login] = authAccount;
+
+            //Return
+            return authAccount;
+        }
     }
 }

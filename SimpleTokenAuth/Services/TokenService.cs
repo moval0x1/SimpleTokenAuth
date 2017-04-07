@@ -20,6 +20,11 @@ namespace SimpleTokenAuth.Services {
         /// </summary>
         private readonly ITokenLibrary _tokenLibrary;
 
+        /// <summary>
+        /// Método construtor
+        /// </summary>
+        /// <param name="tokenLibrary">biblioteca de token</param>
+        /// <param name="accountList">lista de contas</param>
         public TokenService(ITokenLibrary tokenLibrary, IAccountList accountList) {
             //Define repository
             _accountRepository = new AccountRepository(accountList);
@@ -75,6 +80,39 @@ namespace SimpleTokenAuth.Services {
         public IEnumerable<AuthAccount> GetAllAccountsWithValidToken() {
             //Get all accounts
             return _accountRepository.GetAllAccountsWithValidToken(_tokenLibrary.Validation);
+        }
+
+        /// <summary>
+        /// Insere uma nova conta
+        /// </summary>
+        /// <param name="login">login</param>
+        /// <param name="password">password data</param>
+        /// <returns>AuthAccount</returns>
+        public AuthAccount Insert(string login, string password) {
+            //Insere um novo usuário
+            return _accountRepository.Insert(login, password);
+        }
+
+        /// <summary>
+        /// Insere uma nova conta
+        /// </summary>
+        /// <param name="login">login</param>
+        /// <returns>success flag</returns>
+        public bool Delete(string login) {
+            //Remove um login
+            return _accountRepository.Delete(login);
+        }
+
+        /// <summary>
+        /// Insere uma nova conta
+        /// </summary>
+        /// <param name="login">login</param>
+        /// <param name="oldPassword"></param>
+        /// <param name="newPassword"></param>
+        /// <returns>account</returns>
+        public AuthAccount UpdatePassword(string login, string oldPassword, string newPassword) {
+            //Atualiza senha
+            return _accountRepository.UpdatePassword(login, oldPassword, newPassword);
         }
     }
 }
