@@ -294,5 +294,119 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             //Verifiy if is true
             Assert.True(authAccounts.Count() == accountList.AuthAccounts.Count);
         }
+
+        /// <summary>
+        /// Insert user account
+        /// </summary>
+        [Fact]
+        public void InsertAccount() {
+            //Carrega biblioteca de manipulação de token
+            var simpleTokenLibrary = new SimpleTokenLibrary(30);
+
+            //Login data
+            const string login = "abc";
+            //Password data
+            const string password = "123";
+            
+            //Account list
+            var accountList = new AccountList() {
+                //Auth accoint list
+                AuthAccounts ={
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                }
+            };
+            
+            //Create token service
+            var tokenService = new TokenService(simpleTokenLibrary, accountList);
+            //Total before insertion
+            var totalBeforeInsert = tokenService.GetAllAccounts().Count();
+            //Inserted user account
+            var authAccount = tokenService.Insert(login, password);
+            //Total after insertion
+            var totalAfteInsert = tokenService.GetAllAccounts().Count();
+
+            //Verify if is null
+            Assert.NotNull(authAccount);
+            //Verify if are equals
+            Assert.Equal(totalBeforeInsert, totalAfteInsert - 1);
+        }
+
+        /// <summary>
+        /// Insert user account
+        /// </summary>
+        [Fact]
+        public void DeleteAccount() {
+            //Carrega biblioteca de manipulação de token
+            var simpleTokenLibrary = new SimpleTokenLibrary(30);
+
+            //Login data
+            const string login = "abc";
+            //Password data
+            const string password = "123";
+            
+            //Account list
+            var accountList = new AccountList() {
+                //Auth accoint list
+                AuthAccounts ={
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {login, new AuthAccount(login, password) { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                }
+            };
+
+            //Create token service
+            var tokenService = new TokenService(simpleTokenLibrary, accountList);
+            //Total before insertion
+            var totalBeforeDelete = tokenService.GetAllAccounts().Count();
+            //Inserted user account
+            var authAccount = tokenService.Delete(login);
+            //Total after insertion
+            var totalAfterDelete = tokenService.GetAllAccounts().Count();
+
+            //Verify if is null
+            Assert.NotNull(authAccount);
+            //Verify if are equals
+            Assert.Equal(totalBeforeDelete - 1, totalAfterDelete);
+        }
+
+        /// <summary>
+        /// Insert user account
+        /// </summary>
+        [Fact]
+        public void UpdatePasswordAccount() {
+            //Carrega biblioteca de manipulação de token
+            var simpleTokenLibrary = new SimpleTokenLibrary(30);
+
+            //Login data
+            const string login = "abc";
+            //Password data
+            const string oldPassword = "123";
+            //Password data
+            const string newPassword = "456";
+
+            //Account list
+            var accountList = new AccountList() {
+                //Auth accoint list
+                AuthAccounts ={
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {login, new AuthAccount(login, oldPassword) { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                }
+            };
+
+            //Create token service
+            var tokenService = new TokenService(simpleTokenLibrary, accountList);
+            //Total before insertion
+            var newAuthAccount = tokenService.UpdatePassword(login, oldPassword, newPassword);
+            
+            //Verify if is null
+            Assert.NotNull(newAuthAccount);
+            //Verify if are equals
+            Assert.Equal(newAuthAccount.Password, newPassword);
+        }
     }
 }
