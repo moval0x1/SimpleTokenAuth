@@ -43,13 +43,8 @@ namespace SimpleTokenAuth.Domain.Contracts {
         /// <returns>user token data list</returns>
         IEnumerable<AuthAccount> GetAllAccountsWithValidToken();
 
-        /// <summary>
-        /// Insere uma nova conta
-        /// </summary>
-        /// <param name="login">login</param>
-        /// <param name="password">password data</param>
-        /// <returns>success flag</returns>
-        bool Insert(string login, string password);
+        /// <returns>AuthAccount</returns>
+        AuthAccount Insert(string login, string password);
 
         /// <summary>
         /// Insere uma nova conta
@@ -64,7 +59,7 @@ namespace SimpleTokenAuth.Domain.Contracts {
         /// <param name="login">login</param>
         /// <param name="oldPassword"></param>
         /// <param name="newPassword"></param>
-        /// <returns>success flag</returns>
-        bool UpdatePassword(string login, string oldPassword, string newPassword);
+        /// <returns>account</returns>
+        AuthAccount UpdatePassword(string login, string oldPassword, string newPassword);
     }
 }

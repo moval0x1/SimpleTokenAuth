@@ -90,19 +90,19 @@ namespace SimpleTokenAuth.Repository {
         /// <param name="login">login</param>
         /// <param name="password">password data</param>
         /// <returns>success flag</returns>
-        public bool Insert(string login, string password) {
+        public AuthAccount Insert(string login, string password) {
             //Create new account
             var authAccount = new AuthAccount(login, password);
             //Get one account
             var data = GetAccount(login);
 
             //Verify if is null
-            if (data != null) return false;
+            if (data != null) return null;
             //Adding the account
             _accountList.AuthAccounts.Add(login, authAccount);
 
             //Return
-            return true;
+            return authAccount;
         }
 
         /// <summary>
@@ -115,22 +115,22 @@ namespace SimpleTokenAuth.Repository {
             var data = GetAccount(login);
 
             //Verify if is null
-            return data == null && _accountList.AuthAccounts.Remove(login);
+            return data != null && _accountList.AuthAccounts.Remove(login);
         }
 
         /// <summary>
         /// Insere uma nova conta
         /// </summary>
         /// <param name="login">login</param>
-        /// <param name="lastPassword"></param>
+        /// <param name="oldPassword"></param>
         /// <param name="newPassword"></param>
         /// <returns>success flag</returns>
-        public bool UpdatePassword(string login, string lastPassword, string newPassword) {
+        public AuthAccount UpdatePassword(string login, string oldPassword, string newPassword) {
             //Get one account
-            var data = GetAccount(login);
+            var data = GetAccount(login, oldPassword);
 
             //Verify if is null
-            if (data != null) return false;
+            if (data != null) return null;
 
             //Create new account
             var authAccount = new AuthAccount(login, newPassword);
@@ -138,7 +138,7 @@ namespace SimpleTokenAuth.Repository {
             _accountList.AuthAccounts[login] = authAccount;
 
             //Return
-            return true;
+            return authAccount;
         }
     }
 }

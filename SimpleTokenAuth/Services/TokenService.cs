@@ -87,8 +87,8 @@ namespace SimpleTokenAuth.Services {
         /// </summary>
         /// <param name="login">login</param>
         /// <param name="password">password data</param>
-        /// <returns>success flag</returns>
-        public bool Insert(string login, string password) {
+        /// <returns>AuthAccount</returns>
+        public AuthAccount Insert(string login, string password) {
             //Insere um novo usuário
             return _accountRepository.Insert(login, password);
         }
@@ -109,9 +109,8 @@ namespace SimpleTokenAuth.Services {
         /// <param name="login">login</param>
         /// <param name="oldPassword"></param>
         /// <param name="newPassword"></param>
-        /// <returns>success flag</returns>
-        public bool UpdatePassword(string login, string oldPassword, string newPassword)
-        {
+        /// <returns>account</returns>
+        public AuthAccount UpdatePassword(string login, string oldPassword, string newPassword) {
             return _accountRepository.UpdatePassword(login, oldPassword, newPassword);
         }
     }
