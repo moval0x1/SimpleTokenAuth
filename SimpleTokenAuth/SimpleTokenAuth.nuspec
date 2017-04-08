@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>simpletokenlibrary</id>
-    <version>1.0.1</version>
+    <id>SimpleTokenLibrary</id>
+    <version>1.0.2</version>
     <title>Simple Token Library</title>
-    <authors>Alexandre Brandão Lustosa</authors>
-    <owners>Alexandre Brandão Lustosa</owners>
+    <authors>Alexandre Brandao Lustosa</authors>
+    <owners>Alexandre Brandao Lustosa</owners>
     <licenseUrl>https://github.com/alexandrebl/SimpleTokenAuth</licenseUrl>
     <projectUrl>https://github.com/alexandrebl/SimpleTokenAuth</projectUrl>
     <iconUrl>https://github.com/alexandrebl/SimpleTokenAuth</iconUrl>
