@@ -49,5 +49,8 @@
       <Name>SimpleTokenAuth</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Nuget\SimpleTokenAuth.Repository.InMemory.nuspec" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,8 +2,8 @@
 <package >
   <metadata>
     <id>SimpleTokenAuth</id>
-    <version>1.0.5</version>
-    <title>Simple Token Auth Library</title>
+    <version>1.0.6</version>
+    <title>SimpleTokenAuth</title>
     <authors>Alexandre Brandao Lustosa</authors>
     <owners>Alexandre Brandao Lustosa</owners>
     <licenseUrl>https://github.com/alexandrebl/SimpleTokenAuth</licenseUrl>
