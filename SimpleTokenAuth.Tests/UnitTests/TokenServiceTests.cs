@@ -1,8 +1,10 @@
 ﻿using SimpleTokenAuth.Domain.Entities;
 using SimpleTokenAuth.Library;
+using SimpleTokenAuth.Repository;
 using SimpleTokenAuth.Services;
 using System;
 using System.Linq;
+using SimpleTokenAuth.Repository.InMemory;
 using Xunit;
 
 namespace SimpleTokenAuth.Tests.UnitTests {
@@ -15,17 +17,17 @@ namespace SimpleTokenAuth.Tests.UnitTests {
         /// <summary>
         /// Get all accounts with success
         /// </summary>
-        [Fact]
+        [Fact]                      
         public void GetAccountSucess() {
             //Carrega biblioteca de manipulação de token
             var simpleTokenLibrary = new SimpleTokenLibrary(30);
-
+            
             //Login data
             const string login = "abc";
             //Password data
             const string password = "123";
             //Totken data
-            var tokenData = new TokenData() {
+            var tokenData = new TokenData {
                 //Expiuration totken date
                 ExpirationDate = DateTime.UtcNow.AddMinutes(30),
                 //Token data
@@ -33,18 +35,21 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             };
 
             //Account list
-            var accountList = new AccountList() {
+            var accountList = new AccountList {
                 //Auth accoint list
                 AuthAccounts ={
-                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                     {login, new AuthAccount(login, password) { TokenData = tokenData}},
-                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                 }
             };
 
+            //Repositório
+            var inMemoryAccountRepository = new InMemoryAccountRepository(accountList);
+
             //Create token service
-            var tokenService = new TokenService(simpleTokenLibrary, accountList);
+            var tokenService = new TokenService(simpleTokenLibrary, inMemoryAccountRepository);
 
             //Get one account
             var account = tokenService.GetAccount(login);
@@ -78,7 +83,7 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             //Password data
             const string password = "123";
             //Totken data
-            var tokenData = new TokenData() {
+            var tokenData = new TokenData {
                 //Expiuration totken date
                 ExpirationDate = DateTime.UtcNow.AddMinutes(30),
                 //Token data
@@ -86,18 +91,21 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             };
 
             //Account list
-            var accountList = new AccountList() {
+            var accountList = new AccountList {
                 //Auth accoint list
                 AuthAccounts ={
-                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                     {login, new AuthAccount(login, password) { TokenData = tokenData}},
-                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                 }
             };
 
+            //Repositório
+            var inMemoryAccountRepository = new InMemoryAccountRepository(accountList);
+
             //Create token service
-            var tokenService = new TokenService(simpleTokenLibrary, accountList);
+            var tokenService = new TokenService(simpleTokenLibrary, inMemoryAccountRepository);
 
             //Get one account
             var account = tokenService.GetAccount("sss");
@@ -118,7 +126,7 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             //Password data
             const string password = "123";
             //Totken data
-            var tokenData = new TokenData() {
+            var tokenData = new TokenData {
                 //Expiuration totken date
                 ExpirationDate = DateTime.UtcNow.AddMinutes(30),
                 //Token data
@@ -126,18 +134,22 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             };
 
             //Account list
-            var accountList = new AccountList() {
+            var accountList = new AccountList {
                 //Auth accoint list
                 AuthAccounts ={
-                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                     {login, new AuthAccount(login, password) { TokenData = tokenData}},
-                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                 }
             };
 
+            //Repositório
+            var inMemoryAccountRepository = new InMemoryAccountRepository(accountList);
+
             //Create token service
-            var tokenService = new TokenService(simpleTokenLibrary, accountList);
+            var tokenService = new TokenService(simpleTokenLibrary, inMemoryAccountRepository);
+
             //Get one account
             var account = tokenService.GetAccount(login, tokenData.Token);
 
@@ -170,7 +182,7 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             //Password data
             const string password = "123";
             //Totken data
-            var tokenData = new TokenData() {
+            var tokenData = new TokenData {
                 //Expiuration totken date
                 ExpirationDate = DateTime.UtcNow.AddMinutes(30),
                 //Token data
@@ -178,18 +190,22 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             };
 
             //Account list
-            var accountList = new AccountList() {
+            var accountList = new AccountList {
                 //Auth accoint list
                 AuthAccounts ={
-                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                     {login, new AuthAccount(login, password) { TokenData = tokenData}},
-                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                 }
             };
 
+            //Repositório
+            var inMemoryAccountRepository = new InMemoryAccountRepository(accountList);
+
             //Create token service
-            var tokenService = new TokenService(simpleTokenLibrary, accountList);
+            var tokenService = new TokenService(simpleTokenLibrary, inMemoryAccountRepository);
+
             //Get one account
             var result = tokenService.PasswordValidate(login, password);
 
@@ -212,7 +228,7 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             //Password data
             const string password = "123";
             //Totken data
-            var tokenData = new TokenData() {
+            var tokenData = new TokenData {
                 //Expiuration totken date
                 ExpirationDate = DateTime.UtcNow.AddMinutes(30),
                 //Token data
@@ -220,18 +236,20 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             };
 
             //Account list
-            var accountList = new AccountList() {
+            var accountList = new AccountList {
                 //Auth accoint list
                 AuthAccounts ={
-                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                     {login, new AuthAccount(login, password) { TokenData = tokenData}},
-                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                 }
             };
 
+            //Repositório
+            var inMemoryAccountRepository = new InMemoryAccountRepository(accountList);
             //Create token service
-            var tokenService = new TokenService(simpleTokenLibrary, accountList);
+            var tokenService = new TokenService(simpleTokenLibrary, inMemoryAccountRepository);
             //Get one account
             var result = tokenService.GetAllAccounts();
 
@@ -260,7 +278,7 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             //Password data
             const string password = "123";
             //Totken data
-            var tokenData = new TokenData() {
+            var tokenData = new TokenData {
                 //Expiuration totken date
                 ExpirationDate = DateTime.UtcNow.AddMinutes(30),
                 //Token data
@@ -268,18 +286,21 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             };
 
             //Account list
-            var accountList = new AccountList() {
+            var accountList = new AccountList {
                 //Auth accoint list
                 AuthAccounts ={
-                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                     {login, new AuthAccount(login, password) { TokenData = tokenData}},
-                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                 }
             };
 
+            //Repositório
+            var inMemoryAccountRepository = new InMemoryAccountRepository(accountList);
             //Create token service
-            var tokenService = new TokenService(simpleTokenLibrary, accountList);
+            var tokenService = new TokenService(simpleTokenLibrary, inMemoryAccountRepository);
+
             //Get one account
             var result = tokenService.GetAllAccountsWithValidToken();
 
@@ -309,17 +330,19 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             const string password = "123";
             
             //Account list
-            var accountList = new AccountList() {
+            var accountList = new AccountList {
                 //Auth accoint list
                 AuthAccounts ={
-                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                 }
             };
-            
+
+            //Repositório
+            var inMemoryAccountRepository = new InMemoryAccountRepository(accountList);
             //Create token service
-            var tokenService = new TokenService(simpleTokenLibrary, accountList);
+            var tokenService = new TokenService(simpleTokenLibrary, inMemoryAccountRepository);
             //Total before insertion
             var totalBeforeInsert = tokenService.GetAllAccounts().Count();
             //Inserted user account
@@ -347,18 +370,20 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             const string password = "123";
             
             //Account list
-            var accountList = new AccountList() {
+            var accountList = new AccountList {
                 //Auth accoint list
                 AuthAccounts ={
-                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {login, new AuthAccount(login, password) { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {login, new AuthAccount(login, password) { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                 }
             };
 
+            //Repositório
+            var inMemoryAccountRepository = new InMemoryAccountRepository(accountList);
             //Create token service
-            var tokenService = new TokenService(simpleTokenLibrary, accountList);
+            var tokenService = new TokenService(simpleTokenLibrary, inMemoryAccountRepository);
             //Total before insertion
             var totalBeforeDelete = tokenService.GetAllAccounts().Count();
             //Inserted user account
@@ -388,18 +413,20 @@ namespace SimpleTokenAuth.Tests.UnitTests {
             const string newPassword = "456";
 
             //Account list
-            var accountList = new AccountList() {
+            var accountList = new AccountList {
                 //Auth accoint list
                 AuthAccounts ={
-                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {login, new AuthAccount(login, oldPassword) { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
-                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData(){ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"def", new AuthAccount("def", "456") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"fgh", new AuthAccount("fgh", "789") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {login, new AuthAccount(login, oldPassword) { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
+                    {"ijl", new AuthAccount("ijl", "000") { TokenData = new TokenData{ExpirationDate = DateTime.UtcNow.AddMinutes(30), Token = Guid.NewGuid().ToString()}}},
                 }
             };
 
+            //Repositório
+            var inMemoryAccountRepository = new InMemoryAccountRepository(accountList);
             //Create token service
-            var tokenService = new TokenService(simpleTokenLibrary, accountList);
+            var tokenService = new TokenService(simpleTokenLibrary, inMemoryAccountRepository);
             //Total before insertion
             var newAuthAccount = tokenService.UpdatePassword(login, oldPassword, newPassword);
             

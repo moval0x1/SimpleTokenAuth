@@ -1,15 +1,15 @@
-﻿using SimpleTokenAuth.Domain.Contracts;
-using SimpleTokenAuth.Domain.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SimpleTokenAuth.Domain.Contracts;
+using SimpleTokenAuth.Domain.Entities;
 
-namespace SimpleTokenAuth.Repository {
+namespace SimpleTokenAuth.Repository.InMemory {
 
     /// <summary>
     /// Use data repository
     /// </summary>
-    internal class AccountRepository {
+    public class InMemoryAccountRepository : IAccountRepository {
 
         /// <summary>
         /// Account user list
@@ -20,7 +20,7 @@ namespace SimpleTokenAuth.Repository {
         /// constructor method
         /// </summary>
         /// <param name="accountList">user list data</param>
-        public AccountRepository(IAccountList accountList) {
+        public InMemoryAccountRepository(IAccountList accountList) {
             //Set account list
             _accountList = accountList;
         }
@@ -75,10 +75,11 @@ namespace SimpleTokenAuth.Repository {
         /// <summary>
         /// Get all user list
         /// </summary>
-        /// <returns>user token data list</returns>
+        /// <param name="validation">validação</param>
+        /// <returns>lista de contas</returns>
         public IEnumerable<AuthAccount> GetAllAccountsWithValidToken(Func<TokenData, bool> validation) {
             //Find for user
-            var accounts = _accountList.AuthAccounts.Where(w => validation(w.Value.TokenData)).Select(s => s.Value);
+            var accounts = _accountList.AuthAccounts.Where(w => validation?.Invoke(w.Value.TokenData) ?? default(bool)).Select(s => s.Value);
 
             //Retorno
             return accounts;

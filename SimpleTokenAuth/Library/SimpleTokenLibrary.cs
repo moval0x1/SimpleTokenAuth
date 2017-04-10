@@ -1,13 +1,13 @@
-﻿using SimpleTokenAuth.Domain.Contracts;
+﻿using System;
+using SimpleTokenAuth.Domain.Contracts;
 using SimpleTokenAuth.Domain.Entities;
-using System;
 
 namespace SimpleTokenAuth.Library {
 
     /// <summary>
     /// Library for token generation
     /// </summary>
-    internal class SimpleTokenLibrary : ITokenLibrary {
+    public class SimpleTokenLibrary : ITokenLibrary {
 
         /// <summary>
         /// Expiration time in minutes
@@ -29,7 +29,7 @@ namespace SimpleTokenAuth.Library {
         /// <returns></returns>
         public TokenData NewToken() {
             //New token entitiy
-            var tokenDate = new TokenData() {
+            var tokenDate = new TokenData {
                 //Create token key
                 Token = Guid.NewGuid().ToString(),
                 //Set expiration date

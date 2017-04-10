@@ -69,6 +69,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SimpleTokenAuth.Repository.InMemory\SimpleTokenAuth.Repository.InMemory.csproj">
+      <Project>{ff9aad98-a8e1-4af5-aa76-bb529c0d00f2}</Project>
+      <Name>SimpleTokenAuth.Repository.InMemory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimpleTokenAuth\SimpleTokenAuth.csproj">
       <Project>{183848c0-eced-4c3f-9739-1848f8c5185d}</Project>
       <Name>SimpleTokenAuth</Name>
