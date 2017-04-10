@@ -1,6 +1,5 @@
 ﻿using SimpleTokenAuth.Domain.Contracts;
 using SimpleTokenAuth.Domain.Entities;
-using SimpleTokenAuth.Repository;
 using System.Collections.Generic;
 
 namespace SimpleTokenAuth.Services {
@@ -13,7 +12,7 @@ namespace SimpleTokenAuth.Services {
         /// <summary>
         /// Account repositpry
         /// </summary>
-        private readonly AccountRepository _accountRepository;
+        private readonly IAccountRepository _accountRepository;
 
         /// <summary>
         /// Token library
@@ -25,9 +24,9 @@ namespace SimpleTokenAuth.Services {
         /// </summary>
         /// <param name="tokenLibrary">biblioteca de token</param>
         /// <param name="accountList">lista de contas</param>
-        public TokenService(ITokenLibrary tokenLibrary, IAccountList accountList) {
+        public TokenService(ITokenLibrary tokenLibrary, IAccountRepository accountRepository) {
             //Define repository
-            _accountRepository = new AccountRepository(accountList);
+            _accountRepository = accountRepository;
             //Define library
             _tokenLibrary = tokenLibrary;
         }
