@@ -2,8 +2,8 @@
 <package >
   <metadata>
     <id>SimpleTokenAuth.Repository.InMemory</id>
-    <version>1.0.1</version>
-    <title>Memory repository for Simple Token Auth Library</title>
+    <version>1.0.2</version>
+    <title>SimpleTokenAuth Memory Repository</title>
     <authors>Alexandre Brandao Lustosa</authors>
     <owners>Alexandre Brandao Lustosa</owners>
     <licenseUrl>https://github.com/alexandrebl/SimpleTokenAuth</licenseUrl>
