@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>SimpleTokenLibrary</id>
-    <version>1.0.3</version>
-    <title>Simple Token Library</title>
+    <id>SimpleTokenAuth</id>
+    <version>1.0.5</version>
+    <title>Simple Token Auth Library</title>
     <authors>Alexandre Brandao Lustosa</authors>
     <owners>Alexandre Brandao Lustosa</owners>
     <licenseUrl>https://github.com/alexandrebl/SimpleTokenAuth</licenseUrl>
@@ -13,9 +13,9 @@
     <description>Simple token authentication library</description>
     <releaseNotes>Simple token authentication library.</releaseNotes>
     <copyright>Copyright 2017</copyright>
-    <tags>Authorization Token library</tags>
+    <tags>Authorization Token</tags>
   </metadata>
   <files>
-    <file src="bin\Release\SimpleTokenAuth.*" target="lib\net45" />
+    <file src="..\bin\Release\SimpleTokenAuth.*" target="lib\net45" />
   </files>
 </package>
