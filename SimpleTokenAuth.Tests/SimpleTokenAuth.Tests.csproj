@@ -44,6 +44,12 @@
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\SimpleTokenAuth\packages\MSTest.TestFramework.1.1.11\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="SimpleTokenAuth, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\SimpleTokenAuth\packages\SimpleTokenAuth.1.0.4\lib\net45\SimpleTokenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleTokenAuth.Repository.InMemory, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\SimpleTokenAuth\packages\SimpleTokenAuth.Repository.InMemory.1.0.3\lib\net45\SimpleTokenAuth.Repository.InMemory.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
@@ -67,16 +73,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SimpleTokenAuth.Repository.InMemory\SimpleTokenAuth.Repository.InMemory.csproj">
-      <Project>{ff9aad98-a8e1-4af5-aa76-bb529c0d00f2}</Project>
-      <Name>SimpleTokenAuth.Repository.InMemory</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SimpleTokenAuth\SimpleTokenAuth.csproj">
-      <Project>{183848c0-eced-4c3f-9739-1848f8c5185d}</Project>
-      <Name>SimpleTokenAuth</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
